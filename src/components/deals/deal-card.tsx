@@ -1,14 +1,8 @@
 import { useDraggable } from '@dnd-kit/core'
 import { CSS } from '@dnd-kit/utilities'
 import { cn } from '@/lib/utils'
+import { formatCurrency } from '@/lib/format'
 import type { Deal, PipelineStage } from '@/types/deal'
-
-const currencyFormatter = new Intl.NumberFormat('en-US', {
-  style: 'currency',
-  currency: 'USD',
-  minimumFractionDigits: 0,
-  maximumFractionDigits: 0,
-})
 
 function cornerColorClass(stage?: PipelineStage) {
   if (stage?.isWon) return 'bg-ledger'
@@ -57,7 +51,7 @@ export function DealCard({
       <p className="pr-4 text-sm font-medium text-ink">{deal.title}</p>
       <p className="mt-1 text-xs text-ink/60">{contactName}</p>
       <p className="mt-2 font-mono text-sm text-ink">
-        {currencyFormatter.format(deal.value)}
+        {formatCurrency(deal.value)}
       </p>
 
       {stage?.isWon && (

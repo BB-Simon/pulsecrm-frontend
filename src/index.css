@@ -45,6 +45,10 @@
   --chart-3: var(--brick);
   --chart-4: color-mix(in oklch, var(--ledger), var(--paper) 35%);
   --chart-5: color-mix(in oklch, var(--ink), var(--paper) 55%);
+  /* Open (non-terminal) pipeline stages on the dashboard bar chart — a muted
+     ledger tint, so it reads as "in progress" without competing with the
+     ledger/brick used for the Won/Lost outcome bars. */
+  --chart-pipeline-open: color-mix(in oklch, var(--ledger), var(--paper) 62%);
   --radius: 0.375rem;
   --sidebar: var(--paper);
   --sidebar-foreground: var(--ink);

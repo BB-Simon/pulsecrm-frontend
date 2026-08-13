@@ -1,14 +1,8 @@
 import { useDroppable } from '@dnd-kit/core'
 import { cn } from '@/lib/utils'
+import { formatCurrency } from '@/lib/format'
 import { DealCard } from '@/components/deals/deal-card'
 import type { Deal, PipelineStage } from '@/types/deal'
-
-const currencyFormatter = new Intl.NumberFormat('en-US', {
-  style: 'currency',
-  currency: 'USD',
-  minimumFractionDigits: 0,
-  maximumFractionDigits: 0,
-})
 
 export function PipelineColumn({
   stage,
@@ -31,7 +25,7 @@ export function PipelineColumn({
           {stage.name}
         </h2>
         <span className="font-mono text-xs text-ink/40">
-          {currencyFormatter.format(total)}
+          {formatCurrency(total)}
         </span>
       </div>
 
