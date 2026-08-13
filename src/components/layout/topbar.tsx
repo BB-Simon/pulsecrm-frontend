@@ -1,6 +1,7 @@
 import { useLocation, useNavigate } from 'react-router-dom'
 import { LogOut } from 'lucide-react'
 import { navItems } from '@/components/layout/nav-items'
+import { GlobalSearch } from '@/components/layout/global-search'
 import { useAuthStore } from '@/stores/auth-store'
 import {
   DropdownMenu,
@@ -29,12 +30,14 @@ export function Topbar() {
   }
 
   return (
-    <header className="flex h-14 shrink-0 items-center justify-between border-b border-border px-6">
-      <span className="font-mono text-xs tracking-wide text-ink/50 uppercase">
+    <header className="flex h-14 shrink-0 items-center gap-4 border-b border-border px-6">
+      <span className="shrink-0 font-mono text-xs tracking-wide text-ink/50 uppercase">
         {current?.label ?? 'PulseCRM'}
       </span>
 
-      <div className="flex items-center gap-3">
+      <GlobalSearch />
+
+      <div className="ml-auto flex items-center gap-3">
         <DropdownMenu>
           <DropdownMenuTrigger
             className="flex size-8 items-center justify-center rounded-full border border-mist bg-card font-mono text-xs text-ink/70 outline-none hover:border-ochre"
