@@ -17,6 +17,7 @@ import { useContact, useDeleteContact } from '@/features/contacts/hooks'
 import { useCompanies } from '@/features/companies/hooks'
 import { useOrgMembers } from '@/features/users/hooks'
 import { ContactFormDialog } from '@/components/contacts/contact-form-dialog'
+import { ActivityTimeline } from '@/components/contacts/activity-timeline'
 import { getApiErrorMessage } from '@/lib/errors'
 import { formatDate } from '@/lib/format'
 
@@ -154,6 +155,15 @@ export function ContactDetailPage() {
               </CardContent>
             </Card>
           )}
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Activity</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ActivityTimeline contactId={contact.id} />
+            </CardContent>
+          </Card>
 
           <ContactFormDialog
             open={isEditOpen}
