@@ -3,6 +3,7 @@ import {
   Users,
   HandCoins,
   ListChecks,
+  CalendarDays,
   Settings,
   type LucideIcon,
 } from 'lucide-react'
@@ -18,5 +19,6 @@ export const navItems: NavItem[] = [
   { label: 'Contacts', to: '/contacts', icon: Users },
   { label: 'Deals', to: '/deals', icon: HandCoins },
   { label: 'Tasks', to: '/tasks', icon: ListChecks },
+  { label: 'Calendar', to: '/calendar', icon: CalendarDays },
   { label: 'Settings', to: '/settings', icon: Settings },
 ]

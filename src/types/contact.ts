@@ -32,3 +32,9 @@ export interface ContactInput {
   tags?: string[]
   ownerId?: string
 }
+
+export interface LeadScore {
+  score: number
+  rationale: string
+  scoredAt: string
+}

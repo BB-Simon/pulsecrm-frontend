@@ -15,11 +15,13 @@ export function DealCard({
   stage,
   contactName,
   justWon,
+  onClick,
 }: {
   deal: Deal
   stage?: PipelineStage
   contactName: string
   justWon?: boolean
+  onClick?: () => void
 }) {
   const { attributes, listeners, setNodeRef, transform, isDragging } =
     useDraggable({ id: deal.id, data: { deal } })
@@ -34,6 +36,7 @@ export function DealCard({
       style={style}
       {...listeners}
       {...attributes}
+      onClick={onClick}
       className={cn(
         'group relative cursor-grab touch-none rounded-md border border-mist bg-card p-3 text-left shadow-sm active:cursor-grabbing',
         isDragging && 'z-10 opacity-50',

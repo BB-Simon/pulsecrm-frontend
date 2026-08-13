@@ -6,7 +6,7 @@ import { useGlobalSearch } from '@/features/search/hooks'
 import { useDebouncedValue } from '@/hooks/use-debounced-value'
 import { formatCurrency } from '@/lib/format'
 import { cn } from '@/lib/utils'
-import type { SearchContactResult } from '@/types/search'
+import type { SearchContactResult, SearchDealResult } from '@/types/search'
 
 export function GlobalSearch() {
   const navigate = useNavigate()
@@ -33,10 +33,8 @@ export function GlobalSearch() {
     setIsOpen(false)
   }
 
-  function selectDeal() {
-    // No deal detail route exists yet — the pipeline board is the closest
-    // thing to a "deal page" this app has.
-    navigate('/deals')
+  function selectDeal(deal: SearchDealResult) {
+    navigate(`/deals/${deal.id}`)
     setQuery('')
     setIsOpen(false)
   }
@@ -127,7 +125,7 @@ export function GlobalSearch() {
                 <button
                   key={deal.id}
                   type="button"
-                  onClick={selectDeal}
+                  onClick={() => selectDeal(deal)}
                   className="flex w-full items-start justify-between gap-2 px-3 py-1.5 text-left hover:bg-muted"
                 >
                   <span className="min-w-0">

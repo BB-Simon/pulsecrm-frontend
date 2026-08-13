@@ -4,9 +4,10 @@ import {
   deleteContact,
   getContact,
   getContacts,
+  scoreContact,
   updateContact,
 } from '@/features/contacts/api'
-import type { ContactInput, ContactListQuery } from '@/types/contact'
+import type { Contact, ContactInput, ContactListQuery } from '@/types/contact'
 
 export function useContacts(query: ContactListQuery) {
   return useQuery({
@@ -50,6 +51,25 @@ export function useDeleteContact() {
     mutationFn: (id: string) => deleteContact(id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['contacts'] })
+    },
+  })
+}
+
+export function useScoreContact(id: string) {
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: () => scoreContact(id),
+    onSuccess: (leadScore) => {
+      queryClient.setQueryData<Contact>(['contacts', id], (previous) =>
+        previous
+          ? {
+              ...previous,
+              leadScore: leadScore.score,
+              leadScoreRationale: leadScore.rationale,
+              leadScoredAt: leadScore.scoredAt,
+            }
+          : previous,
+      )
     },
   })
 }

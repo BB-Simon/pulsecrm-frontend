@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import {
   DndContext,
   DragOverlay,
@@ -24,6 +25,7 @@ import { getApiErrorMessage } from '@/lib/errors'
 import type { Deal } from '@/types/deal'
 
 export function DealsPage() {
+  const navigate = useNavigate()
   const stagesQuery = usePipelineStages()
   const dealsQuery = useDeals()
   const contactsQuery = useContacts({ limit: 100 })
@@ -124,6 +126,7 @@ export function DealsPage() {
                 deals={dealsByStage.get(stage.id) ?? []}
                 contactNameById={contactNameById}
                 justWonDealId={justWonDealId}
+                onSelectDeal={(dealId) => navigate(`/deals/${dealId}`)}
               />
             ))}
           </div>

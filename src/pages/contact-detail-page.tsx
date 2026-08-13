@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import { ArrowLeft, Pencil, Trash2 } from 'lucide-react'
+import { ArrowLeft, Pencil, Sparkles, Trash2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Skeleton } from '@/components/ui/skeleton'
@@ -13,7 +13,11 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog'
-import { useContact, useDeleteContact } from '@/features/contacts/hooks'
+import {
+  useContact,
+  useDeleteContact,
+  useScoreContact,
+} from '@/features/contacts/hooks'
 import { useCompanies } from '@/features/companies/hooks'
 import { useOrgMembers } from '@/features/users/hooks'
 import { ContactFormDialog } from '@/components/contacts/contact-form-dialog'
@@ -37,6 +41,7 @@ export function ContactDetailPage() {
   const companiesQuery = useCompanies()
   const membersQuery = useOrgMembers()
   const deleteMutation = useDeleteContact()
+  const scoreMutation = useScoreContact(id ?? '')
 
   const [isEditOpen, setIsEditOpen] = useState(false)
   const [isDeleteOpen, setIsDeleteOpen] = useState(false)
@@ -92,6 +97,14 @@ export function ContactDetailPage() {
               </div>
             </div>
             <div className="flex gap-2">
+              <Button
+                variant="outline"
+                disabled={scoreMutation.isPending}
+                onClick={() => scoreMutation.mutate()}
+              >
+                <Sparkles className="size-4" />
+                {scoreMutation.isPending ? 'Scoring…' : 'Score this lead'}
+              </Button>
               <Button variant="outline" onClick={() => setIsEditOpen(true)}>
                 <Pencil className="size-4" />
                 Edit
@@ -106,6 +119,15 @@ export function ContactDetailPage() {
               </Button>
             </div>
           </div>
+
+          {scoreMutation.isError && (
+            <p className="text-sm text-brick">
+              {getApiErrorMessage(
+                scoreMutation.error,
+                'Unable to score this lead right now.',
+              )}
+            </p>
+          )}
 
           <Card>
             <CardHeader>

@@ -1,9 +1,12 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import {
   createDeal,
+  draftFollowUp,
+  getDeal,
   getDeals,
   getPipelineStages,
   moveDealStage,
+  summarizeDeal,
 } from '@/features/deals/api'
 import type { Deal, DealInput } from '@/types/deal'
 import type { PaginatedResponse } from '@/types/pagination'
@@ -21,6 +24,14 @@ export function useDeals() {
   return useQuery({
     queryKey: DEALS_BOARD_KEY,
     queryFn: getDeals,
+  })
+}
+
+export function useDeal(id: string | undefined) {
+  return useQuery({
+    queryKey: ['deals', id],
+    queryFn: () => getDeal(id!),
+    enabled: Boolean(id),
   })
 }
 
@@ -69,5 +80,17 @@ export function useMoveDealStage() {
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: DEALS_BOARD_KEY })
     },
+  })
+}
+
+export function useDraftFollowUp(dealId: string) {
+  return useMutation({
+    mutationFn: () => draftFollowUp(dealId),
+  })
+}
+
+export function useSummarizeDeal(dealId: string) {
+  return useMutation({
+    mutationFn: () => summarizeDeal(dealId),
   })
 }

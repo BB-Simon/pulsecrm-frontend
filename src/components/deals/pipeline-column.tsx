@@ -9,11 +9,13 @@ export function PipelineColumn({
   deals,
   contactNameById,
   justWonDealId,
+  onSelectDeal,
 }: {
   stage: PipelineStage
   deals: Deal[]
   contactNameById: Map<string, string>
   justWonDealId: string | null
+  onSelectDeal: (dealId: string) => void
 }) {
   const { setNodeRef, isOver } = useDroppable({ id: stage.id })
   const total = deals.reduce((sum, deal) => sum + deal.value, 0)
@@ -48,6 +50,7 @@ export function PipelineColumn({
               contactNameById.get(deal.contactId) ?? 'Unknown contact'
             }
             justWon={deal.id === justWonDealId}
+            onClick={() => onSelectDeal(deal.id)}
           />
         ))}
       </div>

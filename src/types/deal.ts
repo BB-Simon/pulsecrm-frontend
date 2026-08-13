@@ -34,3 +34,12 @@ export interface DealInput {
   expectedCloseDate?: string
   ownerId?: string
 }
+
+export interface FollowUpDraft {
+  subject: string
+  body: string
+}
+
+export interface DealSummary {
+  summary: string
+}
