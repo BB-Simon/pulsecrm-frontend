@@ -2,6 +2,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { LogOut } from 'lucide-react'
 import { navItems } from '@/components/layout/nav-items'
 import { GlobalSearch } from '@/components/layout/global-search'
+import { NotificationBell } from '@/components/layout/notification-bell'
 import { useAuthStore } from '@/stores/auth-store'
 import {
   DropdownMenu,
@@ -38,6 +39,8 @@ export function Topbar() {
       <GlobalSearch />
 
       <div className="ml-auto flex items-center gap-3">
+        <NotificationBell />
+
         <DropdownMenu>
           <DropdownMenuTrigger
             className="flex size-8 items-center justify-center rounded-full border border-mist bg-card font-mono text-xs text-ink/70 outline-none hover:border-ochre"
