@@ -1,6 +1,7 @@
 import { cn } from '@/lib/utils'
 import { Badge } from '@/components/ui/badge'
-import { daysUntil, formatDate } from '@/features/billing/format'
+import { daysUntil } from '@/features/billing/format'
+import { formatDate } from '@/lib/format'
 import type { SubscriptionSummary } from '@/types/billing'
 
 const STATUS_LABEL: Record<SubscriptionSummary['status'], string> = {

@@ -7,6 +7,7 @@ import { SignupPage } from '@/pages/signup-page'
 import { AcceptInvitePage } from '@/pages/accept-invite-page'
 import { DashboardPage } from '@/pages/dashboard-page'
 import { ContactsPage } from '@/pages/contacts-page'
+import { ContactDetailPage } from '@/pages/contact-detail-page'
 import { DealsPage } from '@/pages/deals-page'
 import { TasksPage } from '@/pages/tasks-page'
 import { SettingsPage } from '@/pages/settings-page'
@@ -25,6 +26,7 @@ function App() {
           <Route element={<AppLayout />}>
             <Route path="/dashboard" element={<DashboardPage />} />
             <Route path="/contacts" element={<ContactsPage />} />
+            <Route path="/contacts/:id" element={<ContactDetailPage />} />
             <Route path="/deals" element={<DealsPage />} />
             <Route path="/tasks" element={<TasksPage />} />
             <Route path="/settings" element={<SettingsPage />} />
