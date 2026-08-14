@@ -14,6 +14,7 @@ import { TasksPage } from '@/pages/tasks-page'
 import { CalendarPage } from '@/pages/calendar-page'
 import { SettingsPage } from '@/pages/settings-page'
 import { BillingPage } from '@/pages/billing-page'
+import { WebhooksSettingsPage } from '@/pages/webhooks-settings-page'
 
 function App() {
   return (
@@ -35,6 +36,10 @@ function App() {
             <Route path="/calendar" element={<CalendarPage />} />
             <Route path="/settings" element={<SettingsPage />} />
             <Route path="/settings/billing" element={<BillingPage />} />
+            <Route
+              path="/settings/webhooks"
+              element={<WebhooksSettingsPage />}
+            />
             {/* Stripe's checkout/portal return_url is hardcoded to /billing */}
             <Route path="/billing" element={<BillingPage />} />
           </Route>

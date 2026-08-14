@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { CreditCard, ChevronRight } from 'lucide-react'
+import { CreditCard, ChevronRight, Webhook } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
 
 const settingsSections = [
@@ -8,6 +8,12 @@ const settingsSections = [
     description: 'Plan, usage, and payment details',
     to: '/settings/billing',
     icon: CreditCard,
+  },
+  {
+    label: 'Webhooks',
+    description: 'Outbound event notifications and delivery log',
+    to: '/settings/webhooks',
+    icon: Webhook,
   },
 ]
 
