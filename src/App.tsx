@@ -15,6 +15,7 @@ import { CalendarPage } from '@/pages/calendar-page'
 import { SettingsPage } from '@/pages/settings-page'
 import { BillingPage } from '@/pages/billing-page'
 import { WebhooksSettingsPage } from '@/pages/webhooks-settings-page'
+import { ApiKeysSettingsPage } from '@/pages/api-keys-settings-page'
 
 function App() {
   return (
@@ -39,6 +40,10 @@ function App() {
             <Route
               path="/settings/webhooks"
               element={<WebhooksSettingsPage />}
+            />
+            <Route
+              path="/settings/api-keys"
+              element={<ApiKeysSettingsPage />}
             />
             {/* Stripe's checkout/portal return_url is hardcoded to /billing */}
             <Route path="/billing" element={<BillingPage />} />
